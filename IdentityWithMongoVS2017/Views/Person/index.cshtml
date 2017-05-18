@@ -1,0 +1,25 @@
+@model List<IdentityWithMongoVS2017.Data.Person>
+
+<h2>index</h2>
+
+<table>
+    <caption>Create new <a asp-action="create">person</a></caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Gender</td>
+                <td>@person.Age</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
