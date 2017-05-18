@@ -1,0 +1,30 @@
+@model IdentityWithMongoVS2017.Data.Person
+
+<h2>Create a new Person</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label for="name" class="col-md-2 control-label">Name</label>
+        <div class="col-md-10">
+            <input id="name" asp-for="Name" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="gender" class="col-md-2 control-label">Gender</label>
+        <div class="col-md-10">
+            <input maxlength="6" id="gender" asp-for="Gender" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="age" class="col-md-2 control-label">Age</label>
+        <div class="col-md-10">
+            <input type="number" max="99" id="age" asp-for="Age" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Go</button>
+        </div>
+    </div>
+</form>
