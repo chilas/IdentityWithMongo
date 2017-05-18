@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IdentityWithMongoVS2017.Data;
 using IdentityWithMongoVS2017.Models;
 using IdentityWithMongoVS2017.Services;
+using Microsoft.AspNetCore.Identity.MongoDB;
 
 namespace IdentityWithMongoVS2017
 {
@@ -39,13 +38,7 @@ namespace IdentityWithMongoVS2017
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentityWithMongoStoresUsingCustomTypes<ApplicationUser, IdentityRole>(Configuration.GetConnectionString("DefaultConnection"));
 
             services.AddMvc();
 
@@ -63,7 +56,6 @@ namespace IdentityWithMongoVS2017
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else
