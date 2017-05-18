@@ -21,5 +21,7 @@ namespace IdentityWithMongoVS2017.Data
             _connectionString = _config.GetConnectionString("DefaultConnection");
             _dbClient = _dbClient ?? new MongoClient(_connectionString);
         }
+
+        public IMongoDatabase GetDatabase() => _dbClient.GetDatabase(_config["DBInfo:DBName"]);
     }
 }
