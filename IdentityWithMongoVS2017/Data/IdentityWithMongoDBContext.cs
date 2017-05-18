@@ -23,5 +23,7 @@ namespace IdentityWithMongoVS2017.Data
         }
 
         public IMongoDatabase GetDatabase() => _dbClient.GetDatabase(_config["DBInfo:DBName"]);
+
+        public IMongoCollection<Person> GetPersonCollection => GetDatabase().GetCollection<Person>(_config["DBInfo:PersonCollection"]);
     }
 }
