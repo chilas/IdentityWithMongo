@@ -39,7 +39,7 @@ namespace IdentityWithMongoVS2017.Controllers
             if (ModelState.IsValid)
             {
                 await dbCOntext.PersonCollection.InsertOneAsync(person);
-                return View();
+                return RedirectToActionPermanent("Index");
             }
             return View(person);
         }
